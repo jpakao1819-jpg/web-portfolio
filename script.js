@@ -1,4 +1,4 @@
-// Ensure page loads properly
+﻿// Ensure page loads properly
 (function() {
   'use strict';
 
@@ -76,7 +76,7 @@
       
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 60) {
+        if (window.scrollY >= sectionTop - 60) {
           current = section.getAttribute('id');
         }
       });
