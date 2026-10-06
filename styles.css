@@ -818,3 +818,511 @@ img {
     font-size: 0.95rem;
   }
 }
+
+/* ===================================================
+   PACKAGES SECTION
+   =================================================== */
+
+.packages {
+  padding: 2rem 0 5rem;
+}
+
+.packages-note {
+  margin-top: 0.6rem !important;
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+/* Package cards grid */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.pkg-card {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 24px;
+  background: rgba(18, 18, 18, 0.8);
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkg-card:hover,
+.pkg-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+}
+
+.pkg-card-featured {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.1), 0 0 0 1px rgba(212, 175, 55, 0.15);
+}
+
+/* Package thumb / header */
+.pkg-thumb {
+  position: relative;
+  padding: 1.6rem 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.pkg-thumb-1 {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.85) 0%, rgba(214, 40, 40, 0.55) 100%);
+}
+
+.pkg-thumb-2 {
+  background: linear-gradient(135deg, rgba(30, 90, 180, 0.85) 0%, rgba(212, 175, 55, 0.7) 100%);
+}
+
+.pkg-thumb-3 {
+  background: linear-gradient(135deg, rgba(214, 40, 40, 0.85) 0%, rgba(212, 175, 55, 0.75) 100%);
+}
+
+.pkg-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.42rem 0.8rem;
+  background: rgba(15, 15, 15, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.pkg-badge-accent {
+  background: rgba(214, 40, 40, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.pkg-price {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Package body */
+.pkg-body {
+  padding: 1.4rem 1.25rem 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkg-body h3 {
+  margin: 0 0 0.55rem;
+  color: var(--heading);
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.pkg-tagline {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Quick highlights */
+.pkg-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.pkg-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #f4db96;
+  font-size: 0.87rem;
+  font-weight: 500;
+}
+
+.pkg-highlights li::before {
+  content: '✓';
+  color: var(--primary);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+
+/* Expanded "see more" content */
+.pkg-more {
+  margin-top: 0.8rem;
+}
+
+.pkg-more[hidden] {
+  display: none;
+}
+
+.pkg-more h4 {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.pkg-more h4:first-child {
+  margin-top: 0;
+}
+
+/* Feature list (inside expanded area) */
+.pkg-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pkg-feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.pkg-feature-list li::before {
+  content: '•';
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.pkg-feature-list.optional li::before {
+  content: '+';
+  color: rgba(212, 175, 55, 0.6);
+}
+
+.pkg-note {
+  margin-top: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.05);
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* See more / See less toggle button */
+.pkg-toggle {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.62rem 0;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.pkg-toggle:hover,
+.pkg-toggle:focus-visible {
+  color: var(--heading);
+}
+
+.toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease, background 0.2s ease;
+}
+
+.pkg-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(45deg);
+  background: rgba(212, 175, 55, 0.25);
+}
+
+.pkg-toggle-sm {
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+/* Access table (Package 3) */
+.pkg-access-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.pkg-access-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.pkg-access-table th,
+.pkg-access-table td {
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.pkg-access-table th {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+}
+
+.pkg-access-table td {
+  color: var(--muted);
+}
+
+.pkg-access-table tbody tr:hover td {
+  background: rgba(212, 175, 55, 0.04);
+}
+
+/* ===================================================
+   EXTRAS SECTION (Repairs, Updates, Payment, Fees)
+   =================================================== */
+
+.pkg-extras {
+  margin-top: 1rem;
+}
+
+.pkg-extras-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.pkg-extra-card {
+  padding: 1.5rem 1.3rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 22px;
+  background: rgba(15, 15, 15, 0.7);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkg-extra-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.pkg-extra-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.pkg-extra-card h3 {
+  margin: 0 0 0.35rem;
+  color: var(--heading);
+  font-size: 1.1rem;
+}
+
+.pkg-extra-price {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  width: fit-content;
+}
+
+.pkg-extra-card > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* Fee reference table */
+.pkg-fee-table-wrap {
+  margin-bottom: 2.5rem;
+}
+
+.pkg-fee-table-wrap h3 {
+  margin: 0 0 1rem;
+  color: var(--heading);
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.pkg-table-scroll {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.pkg-fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 480px;
+}
+
+.pkg-fee-table th,
+.pkg-fee-table td {
+  padding: 0.85rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.pkg-fee-table th {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.pkg-fee-table td {
+  color: var(--muted);
+}
+
+.pkg-fee-table td:first-child {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+.pkg-fee-table tbody tr:hover td {
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.pkg-fee-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Additional costs */
+.pkg-addl-costs {
+  padding: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 22px;
+  background: rgba(15, 15, 15, 0.6);
+}
+
+.pkg-addl-costs h3 {
+  margin: 0 0 0.5rem;
+  color: var(--heading);
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.pkg-addl-costs > p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.pkg-addl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ===================================================
+   PACKAGES RESPONSIVE
+   =================================================== */
+
+@media (max-width: 900px) {
+  .pkg-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .pkg-extras-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pkg-addl-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .packages {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .pkg-price {
+    font-size: 1.3rem;
+  }
+
+  .pkg-body h3 {
+    font-size: 1.1rem;
+  }
+
+  .pkg-addl-costs {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pkg-card {
+    border-radius: 16px;
+  }
+
+  .pkg-thumb {
+    padding: 1.2rem 1rem 1rem;
+  }
+
+  .pkg-price {
+    font-size: 1.15rem;
+  }
+
+  .pkg-body {
+    padding: 1rem 1rem 1.2rem;
+  }
+
+  .pkg-body h3 {
+    font-size: 1rem;
+  }
+
+  .pkg-extra-card {
+    padding: 1.2rem 1rem;
+    border-radius: 16px;
+  }
+
+  .pkg-fee-table-wrap h3,
+  .pkg-addl-costs h3 {
+    font-size: 1.1rem;
+  }
+}

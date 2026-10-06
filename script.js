@@ -29,15 +29,41 @@
     });
   }
 
+  // "See more / See less" toggles for package cards
+  function setupPackageToggles() {
+    const toggles = document.querySelectorAll('.pkg-toggle');
+    toggles.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const targetId = btn.getAttribute('data-target');
+        const panel = document.getElementById(targetId);
+        if (!panel) return;
+
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+          panel.hidden = true;
+          btn.setAttribute('aria-expanded', 'false');
+          btn.querySelector('.toggle-label').textContent = 'See more\u2026';
+        } else {
+          panel.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+          btn.querySelector('.toggle-label').textContent = 'See less';
+        }
+      });
+    });
+  }
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       updateYear();
       setupSmoothScroll();
+      setupPackageToggles();
     });
   } else {
     updateYear();
     setupSmoothScroll();
+    setupPackageToggles();
   }
 
   // Add active nav link detection
