@@ -29,6 +29,52 @@
     });
   }
 
+  // Showcase live websites alongside the development packages.
+  function setupPackageProjectShowcase() {
+    const packageGrid = document.querySelector('#packages .pkg-grid');
+    if (!packageGrid || document.querySelector('.package-project-showcase')) return;
+
+    const showcase = document.createElement('div');
+    showcase.className = 'package-project-showcase';
+    showcase.innerHTML = `
+      <div class="section-heading">
+        <p>Work we've delivered</p>
+        <h2>Websites built with our skills</h2>
+        <p class="packages-note">Explore these live projects to see examples of the design and experiences our website development packages can deliver.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-thumb drama"><span class="project-tag">Entertainment</span></div>
+          <div class="project-body">
+            <h3>Liklik Drama Website</h3>
+            <p>A vibrant, media-focused website using visual storytelling to showcase entertainment in a clean, engaging experience.</p>
+            <ul class="tech-list"><li>Landing page</li><li>Brand story</li><li>Responsive</li></ul>
+            <div class="project-actions"><a href="https://jpakao1819-jpg.github.io/liklikdrama-website/" target="_blank" rel="noopener noreferrer">Visit Site</a></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-thumb solowara"><span class="project-tag">Community</span></div>
+          <div class="project-body">
+            <h3>PNG Solowara Guardian Youths</h3>
+            <p>A community website that shares youth-driven initiatives and encourages people to get involved.</p>
+            <ul class="tech-list"><li>Informative</li><li>Accessible</li><li>Modern UI</li></ul>
+            <div class="project-actions"><a href="https://jpakao1819-jpg.github.io/png-solowara-guardian-youths/" target="_blank" rel="noopener noreferrer">Visit Site</a></div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-thumb booking"><span class="project-tag">Travel</span></div>
+          <div class="project-body">
+            <h3>Port Moresby Nature Park Booking</h3>
+            <p>A polished booking experience highlighting a destination with a premium design and clear visitor journey.</p>
+            <ul class="tech-list"><li>Booking</li><li>Travel</li><li>Premium UI</li></ul>
+            <div class="project-actions"><a href="https://jpakao1819-jpg.github.io/port-moresby-nature-park-booking/" target="_blank" rel="noopener noreferrer">Visit Site</a></div>
+          </div>
+        </article>
+      </div>
+    `;
+    packageGrid.insertAdjacentElement('afterend', showcase);
+  }
+
   // "See more / See less" toggles for package cards
   function setupPackageToggles() {
     const toggles = document.querySelectorAll('.pkg-toggle');
@@ -43,7 +89,7 @@
         if (isExpanded) {
           panel.hidden = true;
           btn.setAttribute('aria-expanded', 'false');
-          btn.querySelector('.toggle-label').textContent = 'See more\u2026';
+          btn.querySelector('.toggle-label').textContent = 'See more…';
         } else {
           panel.hidden = false;
           btn.setAttribute('aria-expanded', 'true');
@@ -54,16 +100,12 @@
   }
 
   // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      updateYear();
-      setupSmoothScroll();
-      setupPackageToggles();
-    });
-  } else {
+  function initialize() {
     updateYear();
     setupSmoothScroll();
     setupPackageToggles();
+    setupPackageProjectShowcase();
+    updateActiveNav();
   }
 
   // Add active nav link detection
@@ -90,9 +132,9 @@
     });
   }
 
-  if (document.readyState !== 'loading') {
-    updateActiveNav();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
   } else {
-    document.addEventListener('DOMContentLoaded', updateActiveNav);
+    initialize();
   }
 })();
