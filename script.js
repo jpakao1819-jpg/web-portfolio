@@ -29,50 +29,66 @@
     });
   }
 
-  // Showcase live websites alongside the development packages.
-  function setupPackageProjectShowcase() {
-    const packageGrid = document.querySelector('#packages .pkg-grid');
-    if (!packageGrid || document.querySelector('.package-project-showcase')) return;
+  // Place each built website inside the package it best demonstrates.
+  function setupPackageExamples() {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) projectsSection.remove();
 
-    const showcase = document.createElement('div');
-    showcase.className = 'package-project-showcase';
-    showcase.innerHTML = `
-      <div class="section-heading">
-        <p>Work we've delivered</p>
-        <h2>Websites built with our skills</h2>
-        <p class="packages-note">Explore these live projects to see examples of the design and experiences our website development packages can deliver.</p>
-      </div>
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-thumb drama"><span class="project-tag">Entertainment</span></div>
-          <div class="project-body">
-            <h3>Liklik Drama Website</h3>
-            <p>A vibrant, media-focused website using visual storytelling to showcase entertainment in a clean, engaging experience.</p>
-            <ul class="tech-list"><li>Landing page</li><li>Brand story</li><li>Responsive</li></ul>
-            <div class="project-actions"><a href="https://jpakao1819-jpg.github.io/liklikdrama-website/" target="_blank" rel="noopener noreferrer">Visit Site</a></div>
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-thumb solowara"><span class="project-tag">Community</span></div>
-          <div class="project-body">
-            <h3>PNG Solowara Guardian Youths</h3>
-            <p>A community website that shares youth-driven initiatives and encourages people to get involved.</p>
-            <ul class="tech-list"><li>Informative</li><li>Accessible</li><li>Modern UI</li></ul>
-            <div class="project-actions"><a href="https://jpakao1819-jpg.github.io/png-solowara-guardian-youths/" target="_blank" rel="noopener noreferrer">Visit Site</a></div>
-          </div>
-        </article>
-        <article class="project-card">
-          <div class="project-thumb booking"><span class="project-tag">Travel</span></div>
-          <div class="project-body">
-            <h3>Port Moresby Nature Park Booking</h3>
-            <p>A polished booking experience highlighting a destination with a premium design and clear visitor journey.</p>
-            <ul class="tech-list"><li>Booking</li><li>Travel</li><li>Premium UI</li></ul>
-            <div class="project-actions"><a href="https://jpakao1819-jpg.github.io/port-moresby-nature-park-booking/" target="_blank" rel="noopener noreferrer">Visit Site</a></div>
-          </div>
-        </article>
-      </div>
-    `;
-    packageGrid.insertAdjacentElement('afterend', showcase);
+    const projectsNavLink = document.querySelector('.nav-links a[href="#projects"]');
+    if (projectsNavLink) projectsNavLink.remove();
+
+    const projectsButton = document.querySelector('.hero-copy a[href="#projects"]');
+    if (projectsButton) projectsButton.href = '#packages';
+
+    const examplesByPackage = {
+      'pkg-1': [
+        {
+          name: 'Liklik Drama Website',
+          url: 'https://jpakao1819-jpg.github.io/liklikdrama-website/',
+          description: 'Entertainment landing page with visual storytelling and responsive presentation.'
+        },
+        {
+          name: 'PNG Solowara Guardian Youths',
+          url: 'https://jpakao1819-jpg.github.io/png-solowara-guardian-youths/',
+          description: 'Informative community website sharing youth-driven initiatives.'
+        }
+      ],
+      'pkg-2': [
+        {
+          name: 'Port Moresby Nature Park Booking',
+          url: 'https://jpakao1819-jpg.github.io/port-moresby-nature-park-booking/',
+          description: 'A destination-focused website presenting a visitor booking experience.'
+        }
+      ]
+    };
+
+    Object.entries(examplesByPackage).forEach(([packageId, examples]) => {
+      const packageCard = document.getElementById(packageId);
+      if (!packageCard || packageCard.querySelector('.pkg-examples')) return;
+
+      const exampleSection = document.createElement('div');
+      exampleSection.className = 'pkg-note pkg-examples';
+      const heading = document.createElement('strong');
+      heading.textContent = 'Website examples';
+      exampleSection.appendChild(heading);
+
+      examples.forEach(example => {
+        const item = document.createElement('p');
+        item.className = 'pkg-example';
+        const link = document.createElement('a');
+        link.href = example.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = example.name;
+        const description = document.createElement('span');
+        description.textContent = ` — ${example.description}`;
+        item.append(link, description);
+        exampleSection.appendChild(item);
+      });
+
+      const highlights = packageCard.querySelector('.pkg-highlights');
+      if (highlights) highlights.insertAdjacentElement('afterend', exampleSection);
+    });
   }
 
   // "See more / See less" toggles for package cards
@@ -99,15 +115,6 @@
     });
   }
 
-  // Initialize when DOM is ready
-  function initialize() {
-    updateYear();
-    setupSmoothScroll();
-    setupPackageToggles();
-    setupPackageProjectShowcase();
-    updateActiveNav();
-  }
-
   // Add active nav link detection
   function updateActiveNav() {
     const sections = document.querySelectorAll('section[id]');
@@ -130,6 +137,14 @@
         }
       });
     });
+  }
+
+  function initialize() {
+    updateYear();
+    setupPackageExamples();
+    setupSmoothScroll();
+    setupPackageToggles();
+    updateActiveNav();
   }
 
   if (document.readyState === 'loading') {
